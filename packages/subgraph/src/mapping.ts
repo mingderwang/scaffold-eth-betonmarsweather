@@ -1,8 +1,8 @@
 import { BigInt, Address } from "@graphprotocol/graph-ts"
 import {
-  FixedToken,
+  TokenFactory,
   SetPurpose
-} from "../generated/FixedToken/FixedToken"
+} from "../generated/TokenFactory/TokenFactory"
 import { Purpose, Sender } from "../generated/schema"
 
 export function handleSetPurpose(event: SetPurpose): void {

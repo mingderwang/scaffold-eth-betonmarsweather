@@ -7,11 +7,11 @@ use(solidity);
 describe("My Dapp", function () {
   let myContract;
 
-  describe("FixedToken", function () {
-    it("Should deploy FixedToken", async function () {
-      const FixedToken = await ethers.getContractFactory("FixedToken");
+  describe("TokenFactory", function () {
+    it("Should deploy TokenFactory", async function () {
+      const TokenFactory = await ethers.getContractFactory("TokenFactory");
 
-      myContract = await FixedToken.deploy();
+      myContract = await TokenFactory.deploy();
     });
 
     describe("setPurpose()", function () {

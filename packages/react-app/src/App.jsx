@@ -112,11 +112,11 @@ function App(props) {
   //
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(readContracts,"FixedToken", "purpose")
+  const purpose = useContractReader(readContracts,"TokenFactory", "purpose")
   console.log("🤗 purpose:",purpose)
 
   //📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(readContracts, "FixedToken", "SetPurpose", localProvider, 1);
+  const setPurposeEvents = useEventListener(readContracts, "TokenFactory", "SetPurpose", localProvider, 1);
   console.log("📟 SetPurpose events:",setPurposeEvents)
 
   /*
@@ -191,7 +191,7 @@ function App(props) {
 
         <Menu style={{ textAlign:"center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
-            <Link onClick={()=>{setRoute("/")}} to="/">FixedToken</Link>
+            <Link onClick={()=>{setRoute("/")}} to="/">TokenFactory</Link>
           </Menu.Item>
           <Menu.Item key="/hints">
             <Link onClick={()=>{setRoute("/hints")}} to="/hints">Hints</Link>
@@ -213,7 +213,7 @@ function App(props) {
             */}
 
             <Contract
-              name="FixedToken"
+              name="TokenFactory"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}

@@ -10,7 +10,7 @@ const main = async () => {
   console.log("\n\n 📡 Deploying...\n");
 
 
-  const FixedToken = await deploy("FixedToken") // <-- add in constructor args like line 19 vvvv
+  const TokenFactory = await deploy("TokenFactory") // <-- add in constructor args like line 19 vvvv
 
   //const secondContract = await deploy("SecondContract")
 
@@ -32,7 +32,7 @@ const main = async () => {
 
   /*
   //If you want to send some ETH to a contract on deploy (make your constructor payable!)
-  const FixedToken = await deploy("FixedToken", [], {
+  const TokenFactory = await deploy("TokenFactory", [], {
   value: ethers.utils.parseEther("0.05")
   });
   */
@@ -41,7 +41,7 @@ const main = async () => {
   /*
   //If you want to link a library into your contract:
   // reference: https://github.com/austintgriffith/scaffold-eth/blob/using-libraries-example/packages/hardhat/scripts/deploy.js#L19
-  const FixedToken = await deploy("FixedToken", [], {}, {
+  const TokenFactory = await deploy("TokenFactory", [], {}, {
    LibraryName: **LibraryAddress**
   });
   */
