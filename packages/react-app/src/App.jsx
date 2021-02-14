@@ -112,12 +112,12 @@ function App(props) {
   //
 
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(readContracts,"YourContract", "purpose")
-  console.log("🤗 purpose:",purpose)
+  const tokenSymbol = useContractReader(readContracts,"FixedToken", "symbol")
+  console.log("🤗 symbol:", tokenSymbol)
 
   //📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(readContracts, "YourContract", "SetPurpose", localProvider, 1);
-  console.log("📟 SetPurpose events:",setPurposeEvents)
+  const creatTokenEvents = useEventListener(readContracts, "TokenFactory", "TokenCreated", localProvider, 1);
+  console.log("📟 TokenCreated events:", creatTokenEvents)
 
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
@@ -193,7 +193,7 @@ function App(props) {
 
         <Menu style={{ textAlign:"center" }} selectedKeys={[route]} mode="horizontal">
           <Menu.Item key="/">
-            <Link onClick={()=>{setRoute("/")}} to="/">YourContract</Link>
+            <Link onClick={()=>{setRoute("/")}} to="/">TokenFactory</Link>
           </Menu.Item>
           <Menu.Item key="/hints">
             <Link onClick={()=>{setRoute("/hints")}} to="/hints">Hints</Link>
@@ -215,7 +215,7 @@ function App(props) {
             */}
 
             <Contract
-              name="YourContract"
+              name="TokenFactory"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}
@@ -223,15 +223,13 @@ function App(props) {
             />
 
 
-            { /* uncomment for a second contract:
             <Contract
-              name="SecondContract"
+              name="FixedToken"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}
               blockExplorer={blockExplorer}
             />
-            */ }
 
             { /* Uncomment to display and interact with an external contract (DAI on mainnet):
             <Contract
@@ -252,21 +250,7 @@ function App(props) {
               price={price}
             />
           </Route>
-          <Route path="/exampleui">
-            <ExampleUI
-              address={address}
-              userProvider={userProvider}
-              mainnetProvider={mainnetProvider}
-              localProvider={localProvider}
-              yourLocalBalance={yourLocalBalance}
-              price={price}
-              tx={tx}
-              writeContracts={writeContracts}
-              readContracts={readContracts}
-              purpose={purpose}
-              setPurposeEvents={setPurposeEvents}
-            />
-          </Route>
+
           <Route path="/subgraph">
             <Subgraph
             subgraphUri={props.subgraphUri}
