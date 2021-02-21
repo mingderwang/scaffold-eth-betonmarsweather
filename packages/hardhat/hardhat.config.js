@@ -1,8 +1,11 @@
+const { privateKey, infuraProjectId, etherscanApiKey } = require('./secrets.json');
 const { utils } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
 
 require("@nomiclabs/hardhat-waffle");
+require('@nomiclabs/hardhat-ethers');
+require("@nomiclabs/hardhat-etherscan");
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 
@@ -19,6 +22,17 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 // Select the network you want to deploy to here:
 //
 const defaultNetwork = "localhost";
+
+task("accounts", "👩🕵👨🙋👷 Prints the list of accounts (only for localhost)", async () => {
+  const accounts = await ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+  console.log("👩🕵 👨🙋👷 these accounts only for localhost network.");
+  console.log('To see their private keys🔑🗝 when you run "npx hardhat node."');
+});
+
 
 function mnemonic() {
   try {
@@ -38,58 +52,70 @@ module.exports = {
   // REACT_APP_PROVIDER=https://dai.poa.network in packages/react-app/.env
   // (then your frontend will talk to your contracts on the live network!)
   // (you will need to restart the `yarn run start` dev server after editing the .env)
-
   networks: {
-    localhost: {
-      url: "http://localhost:8545",
-      /*
-        notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
-        (you can put in a mnemonic here to set the deployer locally)
-      */
+  	localhost: {
+      url: "http://127.0.0.1:8545"
     },
-    rinkeby: {
-      url: "https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
-    },
-    kovan: {
-      url: "https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
-    },
-    mainnet: {
-      url: "https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+    hardhat: {
     },
     ropsten: {
-      url: "https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: "https://ropsten.infura.io/v3/" + infuraProjectId,
+      chainId: 3,
+      gasPrice: 20000000000,
+      // accounts: {mnemonic: mnemonic}
+      accounts: [privateKey]
+    },
+    rinkeby: {
+      url: "https://rinkeby.infura.io/v3/" + infuraProjectId,
+      chainId: 4,
+      gasPrice: 20000000000,
+      accounts: [privateKey]
     },
     goerli: {
-      url: "https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: "https://goerli.infura.io/v3/" + infuraProjectId,
+      chainId: 5,
+      gasPrice: 20000000000,
+      accounts: [privateKey]
+    },
+    kovan: {
+      url: "https://kovan.infura.io/v3/" + infuraProjectId,
+      chainId: 42,
+      gasPrice: 20000000000,
+      accounts: [privateKey]
+    },
+    bsc: {
+      url: "https://bsc-dataseed.binance.org/",
+      chainId: 56,
+      gasPrice: 1000000000,
+      accounts: [privateKey]
+    },
+    bsctestnet: {
+      url: "https://data-seed-prebsc-2-s3.binance.org:8545/",
+      chainId: 97,
+      accounts: [privateKey]
+    },
+    poa: {
+      url: "https://core.poanetwork.dev",
+      chainId: 99,
+      gasPrice: 1000000000,
+      accounts: [privateKey]
+    },
+    poasokol: {
+      url: "https://sokol.poa.network",
+      chainId: 77,
+      gasPrice: 20000000000,
+      accounts: [privateKey]
     },
     xdai: {
-      url: 'https://rpc.xdaichain.com/',
+      url: "https://dai.poa.network/",
+      chainId: 100,
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      accounts: [privateKey]
     },
     matic: {
       url: 'https://rpc-mainnet.maticvigil.com/',
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      accounts: [privateKey]
     },
   },
   solidity: {
