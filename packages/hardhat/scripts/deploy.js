@@ -9,10 +9,6 @@ const main = async () => {
 
   console.log("\n\n 📡 Deploying...\n");
 
-
-  const TokenFactory = await deploy("TokenFactory") // <-- add in constructor args like line 19 vvvv
-
-  const FixedToken = await deploy("FixedToken")
   const BetOnThePressureOnMars = await deploy("BetOnThePressureOnMars")
 
   // const exampleToken = await deploy("ExampleToken")

@@ -21,7 +21,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+const defaultNetwork = "kovan";
 
 task("accounts", "👩🕵👨🙋👷 Prints the list of accounts (only for localhost)", async () => {
   const accounts = await ethers.getSigners();
@@ -46,6 +46,11 @@ function mnemonic() {
 }
 
 module.exports = {
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: etherscanApiKey
+  },
   defaultNetwork,
 
   // don't forget to set your provider like:
@@ -139,7 +144,7 @@ module.exports = {
         }
       },
       {
-        version: "0.6.7",
+        version: "0.6.6",
         settings: {
           optimizer: {
             enabled: true,
