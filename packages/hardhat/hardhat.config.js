@@ -21,7 +21,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "kovan";
+const defaultNetwork = "ropsten";
 
 task("accounts", "👩🕵👨🙋👷 Prints the list of accounts (only for localhost)", async () => {
   const accounts = await ethers.getSigners();

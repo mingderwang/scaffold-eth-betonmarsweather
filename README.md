@@ -744,3 +744,16 @@ OR
 
 yarn run ipfs
 ```
+
+# verify on etherescan
+```
+➜  hardhat git:(mars) ✗ npx hardhat verify 0xB672e48cc0B754125315F0AB0AeeBEe3953699F3 --show-stack-traces
+Nothing to compile
+Compiling 1 file with 0.6.6
+Successfully submitted source code for contract
+contracts/BetOnThePressureOnMars.sol:BetOnThePressureOnMars at 0xB672e48cc0B754125315F0AB0AeeBEe3953699F3
+for verification on Etherscan. Waiting for verification result...
+
+Successfully verified contract BetOnThePressureOnMars on Etherscan.
+https://ropsten.etherscan.io/address/0xB672e48cc0B754125315F0AB0AeeBEe3953699F3#code
+```

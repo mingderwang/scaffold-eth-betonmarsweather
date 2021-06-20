@@ -1,1 +1,1 @@
-module.exports = ["BetOnThePressureOnMars","FixedToken","TokenFactory"];
+module.exports = ["BetOnThePressureOnMars"];
